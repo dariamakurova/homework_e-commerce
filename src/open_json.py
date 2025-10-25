@@ -1,5 +1,4 @@
 import json
-import os
 
 from src.category import Category
 from src.product import Product
@@ -23,16 +22,3 @@ def create_objects_from_json(data):
         category["products"] = products
         categories.append(Category(**category))
     return categories
-
-
-if __name__ == "__main__":
-
-    path = os.path.join(
-        (os.path.dirname(os.path.dirname(__file__))), "data", "products.json"
-    )
-    data_ = open_json(path)
-    categories_ = create_objects_from_json(data_)
-    print(categories_)
-
-    print(categories_[0].name)
-    print(categories_[0].description)
