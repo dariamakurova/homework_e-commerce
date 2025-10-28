@@ -1,3 +1,6 @@
+from itertools import product
+
+
 class Category:
     """Класс для категорий товаров"""
 
@@ -13,8 +16,18 @@ class Category:
         self.description = description
         self.__products = products
         Category.category_count += 1
-        Category.product_count += len(self.products)
+        Category.product_count += len(self.__products)
+
+
+    @property
+    def products(self):
+        product_str = ""
+        for product in self.__products:
+            product_str += f'{product.name}, {product.price}. Остаток: {product.quantity} шт.\n'
+        return product_str
 
 
     def add_product(self, product):
-        self.__products = product
+        self.__products.append(product)
+        Category.product_count += 1
+

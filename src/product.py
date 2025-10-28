@@ -11,3 +11,8 @@ class Product:
         self.description = description
         self.price = price
         self.quantity = quantity
+
+
+    @classmethod
+    def new_product(cls, product):
+        return cls(product.get("name"), product.get("description"), product.get("price"), product.get("quantity"))
