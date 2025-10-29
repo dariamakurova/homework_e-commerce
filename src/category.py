@@ -21,7 +21,7 @@ class Category:
         """Возвращает список товаров в виде строки"""
         product_str = ""
         for product in self.__products:
-            product_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            product_str += f"{product.name}, {round(product.price)} руб. Остаток: {product.quantity} шт.\n"
         return product_str
 
     def add_product(self, product):

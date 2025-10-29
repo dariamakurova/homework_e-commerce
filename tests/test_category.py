@@ -16,7 +16,7 @@ def test_category_init(category_1, category_2):
 
 def test_products_property(category_1):
     assert category_1.products == (
-        "Product_1, 25.94 руб. Остаток: 3 шт.\nProduct_2, 33.55 руб. Остаток: 6 шт.\n"
+        "Product_1, 26 руб. Остаток: 3 шт.\nProduct_2, 34 руб. Остаток: 6 шт.\n"
     )
 
 
