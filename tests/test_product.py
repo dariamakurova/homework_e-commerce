@@ -1,4 +1,5 @@
 from src.product import Product
+from unittest.mock import patch
 
 
 def test_product_init(product_5):
@@ -22,3 +23,30 @@ def test_new_product_same_name():
 
     assert product_1.quantity == 6
     assert product_1.price == 11.90
+
+
+def test_price_setter(capsys):
+    product_1 = Product("Товар_1", "Описание товара_1", 10.90, 4)
+    assert product_1.price == 10.90
+    product_1.price = 12.55
+    assert product_1.price == 12.55
+    product_1.price = 0
+    assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
+    product_1.price = -5
+    assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
+
+
+
+def test_price_lower(capsys):
+    product_1 = Product("Товар_1", "Описание товара_1", 10.90, 4)
+    product_1.price = 10.90
+    with patch("builtins.input", return_value= "y"):
+        product_1.price = 9.55
+        assert product_1.price == 9.55
+    with patch("builtins.input", return_value= "n"):
+        product_1.price = 8.55
+        assert product_1.price == 9.55
+    with patch("builtins.input", side_effect= ["p", "y"]):
+        product_1.price = 8.55
+        assert capsys.readouterr().out == "Введите y или n\n"
+        assert product_1.price == 8.55
