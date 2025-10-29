@@ -6,7 +6,7 @@ class Product:
     price: float
     quantity: int
 
-    _products = [] # класс-аттрибут, в котором хранятся все экземпляры класса
+    _products: list = []  # класс-аттрибут, в котором хранятся все экземпляры класса
 
     def __init__(self, name, description, price, quantity):
         self.name = name
@@ -15,8 +15,6 @@ class Product:
         self.quantity = quantity
 
         Product._products.append(self)
-
-
 
     @classmethod
     def new_product(cls, new_product):
@@ -27,9 +25,12 @@ class Product:
                     product.__price = new_product.get("price")
                 return product
         else:
-            return cls(new_product.get("name"), new_product.get("description"), new_product.get("price"),
-                           new_product.get("quantity"))
-
+            return cls(
+                new_product.get("name"),
+                new_product.get("description"),
+                new_product.get("price"),
+                new_product.get("quantity"),
+            )
 
     @property
     def price(self):
@@ -46,7 +47,11 @@ class Product:
 
             while True:
 
-                confirmation = input("Цена товара понизится. Вы подтверждаете понижение цены? y/n").strip().lower()
+                confirmation = (
+                    input("Цена товара понизится. Вы подтверждаете понижение цены? y/n")
+                    .strip()
+                    .lower()
+                )
                 if confirmation.lower() == "y":
                     self.__price = actual_price
                     break
@@ -57,4 +62,3 @@ class Product:
                     print("Введите y или n")
         else:
             self.__price = actual_price
-
