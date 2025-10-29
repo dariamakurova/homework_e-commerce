@@ -14,3 +14,11 @@ def test_new_product():
     assert New_product.description == "Описание нового товара"
     assert New_product.price == 56.78
     assert New_product.quantity == 4
+
+def test_new_product_same_name():
+    product_1 = Product("Товар_1", "Описание товара_1", 10.90, 4)
+    product_2 = {"name": "Товар_1", "description": "Описание товара_1", "price": 11.90, "quantity": 2}
+    Product.new_product(product_2)
+
+    assert product_1.quantity == 6
+    assert product_1.price == 11.90
