@@ -22,7 +22,7 @@ class Product:
 
 
     def __add__(self, other):
-        return self.__price * self.quantity + other.__price * other.quantity
+        return round(self.__price * self.quantity + other.__price * other.quantity, 2)
 
 
     @classmethod

@@ -25,8 +25,8 @@ class Category:
 
     @property
     def products(self):
-        """Возвращает список товаров в виде строки"""
-        product_str = [str(product) for product in self.__products]
+        """Возвращает список товаров в виде строк с информацией о товаре"""
+        product_str = [f'{str(product)}\n' for product in self.__products]
         return product_str
 
     def add_product(self, product):

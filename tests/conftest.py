@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category
+from src.category_iterator import CategoryIterator
 from src.product import Product
 
 
@@ -45,6 +46,15 @@ def product_5():
         quantity=3,
     )
 
+@pytest.fixture
+def product_6():
+    return Product(
+        name="Product_6",
+        description="description of Product_6",
+        price=13.44,
+        quantity=12,
+    )
+
 
 @pytest.fixture
 def json_data():
@@ -69,3 +79,7 @@ def json_data():
             ],
         }
     ]
+
+@pytest.fixture
+def category_iterator(category_1):
+    return CategoryIterator(category_1)
