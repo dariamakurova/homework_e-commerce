@@ -1,4 +1,3 @@
-
 class Category:
     """Класс для категорий товаров"""
 
@@ -16,17 +15,16 @@ class Category:
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
-
     def __str__(self):
         amount = 0
         for product in self.__products:
             amount += product.quantity
-        return f'{self.name}, количество продуктов: {amount} шт.'
+        return f"{self.name}, количество продуктов: {amount} шт."
 
     @property
     def products(self):
         """Возвращает список товаров в виде строк с информацией о товаре"""
-        product_str = [f'{str(product)}\n' for product in self.__products]
+        product_str = [f"{str(product)}\n" for product in self.__products]
         return product_str
 
     def add_product(self, product):

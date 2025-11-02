@@ -1,7 +1,5 @@
 import pytest
 
-from src.category_iterator import CategoryIterator
-
 
 def test_category_iterator(category_iterator):
     assert category_iterator.index == 0

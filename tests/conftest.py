@@ -46,6 +46,7 @@ def product_5():
         quantity=3,
     )
 
+
 @pytest.fixture
 def product_6():
     return Product(
@@ -79,6 +80,7 @@ def json_data():
             ],
         }
     ]
+
 
 @pytest.fixture
 def category_iterator(category_1):
