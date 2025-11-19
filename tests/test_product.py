@@ -62,3 +62,11 @@ def test_price_lower(capsys):
         product_1.price = 8.55
         assert capsys.readouterr().out == "Введите y или n\n"
         assert product_1.price == 8.55
+
+
+def test_product_str(product_5):
+    assert str(product_5) == "Product_5, 25.94 руб. Остаток: 3 шт."
+
+
+def test_product_add(product_5, product_6):
+    assert product_5 + product_6 == 239.1
