@@ -3,6 +3,8 @@ import pytest
 from src.category import Category
 from src.category_iterator import CategoryIterator
 from src.product import Product
+from src.smartphone import Smartphone
+from src.lawn_grass import LawnGrass
 
 
 @pytest.fixture
@@ -85,3 +87,23 @@ def json_data():
 @pytest.fixture
 def category_iterator(category_1):
     return CategoryIterator(category_1)
+
+
+@pytest.fixture
+def smartphone_1():
+    return Smartphone("Nokia", "Кнопочный телефон", 100, 2, 3, "3310", 10, 'синий')
+
+
+@pytest.fixture
+def smartphone_2():
+    return Smartphone("SonyEriksson", "Телефон со стилусом", 120, 3, 5, "Walkman 5800", 36, 'оранжевый')
+
+
+@pytest.fixture
+def lawn_grass_1():
+    return LawnGrass("Газонная трава 1", "Смесь клевер, мятлик", 1500, 4, "Россия", "7 дней", "сочный зеленый")
+
+
+@pytest.fixture
+def lawn_grass_2():
+    return LawnGrass("Газонная трава 2", "Элитный газон", 2000, 3, "Нидерланды", "5 дней", "темно-зеленый")
