@@ -11,10 +11,11 @@ def test_smartphone_init(smartphone_1):
     assert smartphone_1.memory == 10
     assert smartphone_1.color == "синий"
 
+
 def test_smartphone_add(smartphone_1, smartphone_2):
     assert smartphone_1 + smartphone_2 == 560
 
+
 def test_smartphone_add_error(smartphone_1, smartphone_2):
     with pytest.raises(TypeError):
-        result = smartphone_1 + 3
-
+        smartphone_1 + 3

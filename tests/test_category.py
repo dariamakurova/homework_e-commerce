@@ -43,4 +43,3 @@ def test_add_product_not_product(category_2):
 def test_add_product_smartphone(category_2, smartphone_1):
     category_2.add_product(smartphone_1)
     assert category_2.get_products[-1].name == "Nokia"
-

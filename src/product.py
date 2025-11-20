@@ -21,7 +21,9 @@ class Product:
 
     def __add__(self, other):
         if type(other) is Product:
-            return round(self.__price * self.quantity + other.__price * other.quantity, 2)
+            return round(
+                self.__price * self.quantity + other.__price * other.quantity, 2
+            )
         raise TypeError
 
     @classmethod

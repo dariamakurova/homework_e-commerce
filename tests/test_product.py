@@ -1,10 +1,6 @@
 from unittest.mock import patch
 
-import pytest
-
-from src.lawn_grass import LawnGrass
 from src.product import Product
-from src.smartphone import Smartphone
 
 
 def test_product_init(product_5):
