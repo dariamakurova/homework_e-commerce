@@ -2,6 +2,7 @@ from src.product import Product
 
 
 class Smartphone(Product):
+    """ Класс для представления категории Смартфоны в интернет-магазине"""
 
     def __init__(self, name, description, price, quantity, efficiency, model, memory, color):
         super().__init__(name, description, price, quantity)
@@ -9,3 +10,14 @@ class Smartphone(Product):
         self.model = model
         self.memory = memory
         self.color = color
+
+
+    def __add__(self, other):
+        if type(other) is Smartphone:
+            return round(self.price * self.quantity + other.price * other.quantity, 2)
+        raise TypeError
+
+    # def __add__(self, other):
+    #     if type(other) is Smartphone:
+    #         return round(self._Product__price * self.quantity + other._Product__price * other.quantity, 2)
+    #     raise TypeError
