@@ -26,23 +26,19 @@ class Product:
 
     @classmethod
     def new_product(cls, new_product):
-        if isinstance(new_product, Product):
-            for product in cls._products:
-                if product.name == new_product.get("name"):
-                    product.quantity += int(new_product.get("quantity"))
-                    if product.__price < new_product.get("price"):
-                        product.__price = new_product.get("price")
-                    return product
-                else:
-                    return cls(
-                        new_product.get("name"),
-                        new_product.get("description"),
-                        new_product.get("price"),
-                        new_product.get("quantity"),
-                    )
+        for product in cls._products:
+            if product.name == new_product.get("name"):
+                product.quantity += int(new_product.get("quantity"))
+                if product.__price < new_product.get("price"):
+                    product.__price = new_product.get("price")
+                return product
         else:
-            raise ValueError
-
+            return cls(
+                new_product.get("name"),
+                new_product.get("description"),
+                new_product.get("price"),
+                new_product.get("quantity"),
+            )
 
     @property
     def price(self):

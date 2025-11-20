@@ -1,6 +1,10 @@
 from unittest.mock import patch
 
+import pytest
+
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 def test_product_init(product_5):
@@ -17,11 +21,11 @@ def test_new_product():
         "price": 56.78,
         "quantity": 4,
     }
-    New_product = Product.new_product(product)
-    assert New_product.name == "Новый товар"
-    assert New_product.description == "Описание нового товара"
-    assert New_product.price == 56.78
-    assert New_product.quantity == 4
+    new_product = Product.new_product(product)
+    assert new_product.name == "Новый товар"
+    assert new_product.description == "Описание нового товара"
+    assert new_product.price == 56.78
+    assert new_product.quantity == 4
 
 
 def test_new_product_same_name():
