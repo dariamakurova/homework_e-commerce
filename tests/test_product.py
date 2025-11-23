@@ -1,5 +1,72 @@
-def test_product_init(product_1):
-    assert product_1.name == "Product_1"
-    assert product_1.description == "description of Product_1"
-    assert product_1.price == 25.94
-    assert product_1.quantity == 3
+from unittest.mock import patch
+
+from src.product import Product
+
+
+def test_product_init(product_5):
+    assert product_5.name == "Product_5"
+    assert product_5.description == "description of Product_5"
+    assert product_5.price == 25.94
+    assert product_5.quantity == 3
+
+
+def test_new_product():
+    product = {
+        "name": "Новый товар",
+        "description": "Описание нового товара",
+        "price": 56.78,
+        "quantity": 4,
+    }
+    new_product = Product.new_product(product)
+    assert new_product.name == "Новый товар"
+    assert new_product.description == "Описание нового товара"
+    assert new_product.price == 56.78
+    assert new_product.quantity == 4
+
+
+def test_new_product_same_name():
+    product_1 = Product("Товар_1", "Описание товара_1", 10.90, 4)
+    product_2 = {
+        "name": "Товар_1",
+        "description": "Описание товара_1",
+        "price": 11.90,
+        "quantity": 2,
+    }
+    Product.new_product(product_2)
+
+    assert product_1.quantity == 6
+    assert product_1.price == 11.90
+
+
+def test_price_setter(capsys):
+    product_1 = Product("Товар_1", "Описание товара_1", 10.90, 4)
+    assert product_1.price == 10.90
+    product_1.price = 12.55
+    assert product_1.price == 12.55
+    product_1.price = 0
+    assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
+    product_1.price = -5
+    assert capsys.readouterr().out == "Цена не должна быть нулевая или отрицательная\n"
+
+
+def test_price_lower(capsys):
+    product_1 = Product("Товар_1", "Описание товара_1", 10.90, 4)
+    product_1.price = 10.90
+    with patch("builtins.input", return_value="y"):
+        product_1.price = 9.55
+        assert product_1.price == 9.55
+    with patch("builtins.input", return_value="n"):
+        product_1.price = 8.55
+        assert product_1.price == 9.55
+    with patch("builtins.input", side_effect=["p", "y"]):
+        product_1.price = 8.55
+        assert capsys.readouterr().out == "Введите y или n\n"
+        assert product_1.price == 8.55
+
+
+def test_product_str(product_5):
+    assert str(product_5) == "Product_5, 25.94 руб. Остаток: 3 шт."
+
+
+def test_product_add(product_5, product_6):
+    assert product_5 + product_6 == 239.1

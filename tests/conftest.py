@@ -1,15 +1,32 @@
 import pytest
 
 from src.category import Category
+from src.category_iterator import CategoryIterator
+from src.lawn_grass import LawnGrass
 from src.product import Product
+from src.smartphone import Smartphone
 
 
 @pytest.fixture
 def category_1():
+
+    product_1 = Product(
+        name="Product_1",
+        description="description of Product_1",
+        price=25.94,
+        quantity=3,
+    )
+    product_2 = Product(
+        name="Product_2",
+        description="description of Product_2",
+        price=33.55,
+        quantity=6,
+    )
+
     return Category(
         name="Category_1",
         description="Category_of_products_1",
-        products=["product_1", "product_2"],
+        products=[product_1, product_2],
     )
 
 
@@ -23,12 +40,22 @@ def category_2():
 
 
 @pytest.fixture
-def product_1():
+def product_5():
     return Product(
-        name="Product_1",
-        description="description of Product_1",
+        name="Product_5",
+        description="description of Product_5",
         price=25.94,
         quantity=3,
+    )
+
+
+@pytest.fixture
+def product_6():
+    return Product(
+        name="Product_6",
+        description="description of Product_6",
+        price=13.44,
+        quantity=12,
     )
 
 
@@ -55,3 +82,53 @@ def json_data():
             ],
         }
     ]
+
+
+@pytest.fixture
+def category_iterator(category_1):
+    return CategoryIterator(category_1)
+
+
+@pytest.fixture
+def smartphone_1():
+    return Smartphone("Nokia", "Кнопочный телефон", 100, 2, 3, "3310", 10, "синий")
+
+
+@pytest.fixture
+def smartphone_2():
+    return Smartphone(
+        "SonyEriksson",
+        "Телефон со стилусом",
+        120,
+        3,
+        5,
+        "Walkman 5800",
+        36,
+        "оранжевый",
+    )
+
+
+@pytest.fixture
+def lawn_grass_1():
+    return LawnGrass(
+        "Газонная трава 1",
+        "Смесь клевер, мятлик",
+        1500,
+        4,
+        "Россия",
+        "7 дней",
+        "сочный зеленый",
+    )
+
+
+@pytest.fixture
+def lawn_grass_2():
+    return LawnGrass(
+        "Газонная трава 2",
+        "Элитный газон",
+        2000,
+        3,
+        "Нидерланды",
+        "5 дней",
+        "темно-зеленый",
+    )
