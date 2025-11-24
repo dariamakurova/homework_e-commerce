@@ -1,7 +1,7 @@
 from src.base_product import BaseProduct
+from src.print_mixin import PrintMixin
 
-
-class Product(BaseProduct):
+class Product(BaseProduct, PrintMixin):
     """Класс для товаров"""
 
     name: str
@@ -12,10 +12,12 @@ class Product(BaseProduct):
     _products: list = []  # класс-аттрибут, в котором хранятся все экземпляры класса
 
     def __init__(self, name, description, price, quantity):
+
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        super().__init__()
 
         Product._products.append(self)
 
