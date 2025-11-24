@@ -132,3 +132,11 @@ def lawn_grass_2():
         "5 дней",
         "темно-зеленый",
     )
+
+@pytest.fixture
+def product_test():
+    return Product(
+        "Тестовый товар",
+        "Описание тестового продукта",
+        150,
+        6)
