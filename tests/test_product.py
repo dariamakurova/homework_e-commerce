@@ -44,9 +44,15 @@ def test_price_setter(capsys):
     product_1.price = 12.55
     assert product_1.price == 12.55
     product_1.price = 0
-    assert capsys.readouterr().out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
+    assert (
+        capsys.readouterr().out.strip().split("\n")[-1]
+        == "Цена не должна быть нулевая или отрицательная"
+    )
     product_1.price = -5
-    assert capsys.readouterr().out.strip().split("\n")[-1] == "Цена не должна быть нулевая или отрицательная"
+    assert (
+        capsys.readouterr().out.strip().split("\n")[-1]
+        == "Цена не должна быть нулевая или отрицательная"
+    )
 
 
 def test_price_lower(capsys):
