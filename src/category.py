@@ -1,4 +1,8 @@
-class Category:
+from src.base_category import BaseCategory
+from src.product import Product
+
+
+class Category(BaseCategory):
     """Класс для категорий товаров"""
 
     name: str
@@ -9,9 +13,9 @@ class Category:
     product_count = 0
 
     def __init__(self, name, description, products):
-        self.name = name
-        self.description = description
+        super().__init__(name, description)
         self.__products = products
+
         Category.category_count += 1
         Category.product_count += len(self.__products)
 
@@ -29,8 +33,11 @@ class Category:
 
     def add_product(self, product):
         """Добавление товара в категорию"""
-        self.__products.append(product)
-        Category.product_count += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.product_count += 1
+        else:
+            raise TypeError
 
     @property
     def get_products(self):
