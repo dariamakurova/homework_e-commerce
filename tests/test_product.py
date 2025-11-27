@@ -1,5 +1,7 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product
 
 
@@ -76,3 +78,17 @@ def test_product_str(product_5):
 
 def test_product_add(product_5, product_6):
     assert product_5 + product_6 == 239.1
+
+
+def test_product_zero_quantity():
+    product = {
+        "name": "Новый товар",
+        "description": "Описание нового товара",
+        "price": 56.78,
+        "quantity": 0
+    }
+    with pytest.raises(ValueError):
+        Product.new_product(product)
+
+
+

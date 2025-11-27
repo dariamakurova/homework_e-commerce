@@ -12,7 +12,7 @@ class Product(BaseProduct, PrintMixin):
 
     _products: list = []  # класс-аттрибут, в котором хранятся все экземпляры класса
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name, description, price, quantity=0):
 
         self.name = name
         self.description = description
