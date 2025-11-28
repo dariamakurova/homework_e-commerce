@@ -82,5 +82,5 @@ def test_product_add(product_5, product_6):
 
 
 def test_product_zero_quantity():
-    with pytest.raises(ZeroQuantity):
+    with pytest.raises(ValueError):
         Product("Новый товар", "Описание нового товара", 56.78, 0)
