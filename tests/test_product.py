@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 import pytest
 
+from src.exceptions import ZeroQuantity
 from src.product import Product
 
 
@@ -32,7 +33,7 @@ def test_new_product_same_name():
         "name": "Товар_1",
         "description": "Описание товара_1",
         "price": 11.90,
-        "quantity": 2,
+        "quantity": 2
     }
     Product.new_product(product_2)
 
@@ -81,14 +82,8 @@ def test_product_add(product_5, product_6):
 
 
 def test_product_zero_quantity():
-    product = {
-        "name": "Новый товар",
-        "description": "Описание нового товара",
-        "price": 56.78,
-        "quantity": 0
-    }
-    with pytest.raises(ValueError):
-        Product.new_product(product)
+    with pytest.raises(ZeroQuantity):
+        Product("Новый товар", "Описание нового товара", 56.78,0)
 
 
 

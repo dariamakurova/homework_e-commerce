@@ -1,5 +1,6 @@
 from src.base_product import BaseProduct
 from src.print_mixin import PrintMixin
+from src.exceptions import ZeroQuantity
 
 
 class Product(BaseProduct, PrintMixin):
@@ -20,7 +21,7 @@ class Product(BaseProduct, PrintMixin):
         if quantity > 0:
             self.quantity = quantity
         else:
-            raise ValueError("Товар с нулевым количеством не может быть добавлен")
+            raise ZeroQuantity("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
         Product._products.append(self)
@@ -50,6 +51,7 @@ class Product(BaseProduct, PrintMixin):
                 new_product.get("price"),
                 new_product.get("quantity"),
             )
+
 
     @property
     def price(self):
@@ -81,3 +83,7 @@ class Product(BaseProduct, PrintMixin):
                     print("Введите y или n")
         else:
             self.__price = actual_price
+
+if __name__ == "__main__":
+
+    Product("bvz", "dfgs", 12, 0)
