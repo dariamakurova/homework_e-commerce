@@ -52,7 +52,6 @@ class Product(BaseProduct, PrintMixin):
                 new_product.get("quantity"),
             )
 
-
     @property
     def price(self):
         return self.__price
@@ -83,6 +82,7 @@ class Product(BaseProduct, PrintMixin):
                     print("Введите y или n")
         else:
             self.__price = actual_price
+
 
 if __name__ == "__main__":
 

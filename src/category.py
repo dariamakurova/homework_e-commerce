@@ -2,6 +2,7 @@ from src.base_category import BaseCategory
 from src.product import Product
 from src.exceptions import ZeroQuantity
 
+
 class Category(BaseCategory):
     """Класс для категорий товаров"""
 
@@ -53,10 +54,12 @@ class Category(BaseCategory):
         """Получение списка товаров"""
         return self.__products
 
-
     def middle_price(self):
         try:
-            return round(sum([product.price for product in self.__products]) / len(self.__products), 2)
+            return round(
+                sum([product.price for product in self.__products])
+                / len(self.__products),
+                2,
+            )
         except ZeroDivisionError:
             return 0
-

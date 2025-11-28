@@ -1,7 +1,6 @@
 import pytest
 
 from src.category import Category
-from src.exceptions import ZeroQuantity
 from src.product import Product
 
 
@@ -62,8 +61,14 @@ def test_custom_exception(capsys, category_2):
 
     category_2.add_product(new_product)
     message = capsys.readouterr()
-    assert message.out.strip().split('\n')[-2] == "Нельзя добавить товар с нулевым количеством"
-    assert message.out.strip().split('\n')[-1] == "Обработка добавления товара в категорию завершена"
+    assert (
+        message.out.strip().split("\n")[-2]
+        == "Нельзя добавить товар с нулевым количеством"
+    )
+    assert (
+        message.out.strip().split("\n")[-1]
+        == "Обработка добавления товара в категорию завершена"
+    )
 
     new_product = Product.__new__(Product)
     new_product.name = "Тестовый товар"
@@ -73,5 +78,8 @@ def test_custom_exception(capsys, category_2):
 
     category_2.add_product(new_product)
     message = capsys.readouterr()
-    assert message.out.strip().split('\n')[-2] == "Товар успешно добавлен"
-    assert message.out.strip().split('\n')[-1] == "Обработка добавления товара в категорию завершена"
+    assert message.out.strip().split("\n")[-2] == "Товар успешно добавлен"
+    assert (
+        message.out.strip().split("\n")[-1]
+        == "Обработка добавления товара в категорию завершена"
+    )

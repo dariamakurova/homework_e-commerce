@@ -15,7 +15,7 @@ class Order(BaseCategory):
         )
         if isinstance(product, Product):
             try:
-                if product.quantity == 0:
+                if quantity == 0:
                     raise ZeroQuantity("Нельзя добавить товар с нулевым количеством")
             except ZeroQuantity as e:
                 print(str(e))
