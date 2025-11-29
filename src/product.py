@@ -82,8 +82,3 @@ class Product(BaseProduct, PrintMixin):
                     print("Введите y или n")
         else:
             self.__price = actual_price
-
-
-if __name__ == "__main__":
-
-    Product("bvz", "dfgs", 12, 0)
