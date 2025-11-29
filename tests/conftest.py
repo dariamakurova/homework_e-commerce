@@ -137,3 +137,8 @@ def lawn_grass_2():
 @pytest.fixture
 def product_test():
     return Product("Тестовый товар", "Описание тестового продукта", 150, 6)
+
+
+@pytest.fixture
+def category_zero():
+    return Category("Категория 3", "Категория с нулевым товаром", [])

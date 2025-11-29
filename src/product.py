@@ -1,5 +1,6 @@
 from src.base_product import BaseProduct
 from src.print_mixin import PrintMixin
+from src.exceptions import ZeroQuantity
 
 
 class Product(BaseProduct, PrintMixin):
@@ -12,12 +13,15 @@ class Product(BaseProduct, PrintMixin):
 
     _products: list = []  # класс-аттрибут, в котором хранятся все экземпляры класса
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name, description, price, quantity=0):
 
         self.name = name
         self.description = description
         self.__price = price
-        self.quantity = quantity
+        if quantity > 0:
+            self.quantity = quantity
+        else:
+            raise ValueError("Товар с нулевым количеством не может быть добавлен")
         super().__init__()
 
         Product._products.append(self)
