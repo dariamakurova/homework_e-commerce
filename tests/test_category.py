@@ -1,6 +1,7 @@
 import pytest
 
 from src.category import Category
+from src.product import Product
 
 
 def test_category_init(category_1, category_2):
@@ -43,3 +44,42 @@ def test_add_product_not_product(category_2):
 def test_add_product_smartphone(category_2, smartphone_1):
     category_2.add_product(smartphone_1)
     assert category_2.get_products[-1].name == "Nokia"
+
+
+def test_middle_quantity(category_1, category_zero):
+    assert category_1.middle_price() == 29.74
+    assert category_zero.middle_price() == 0
+
+
+def test_custom_exception(capsys, category_2):
+    assert len(category_2.get_products) == 2
+    new_product = Product.__new__(Product)
+    new_product.name = "Тестовый товар"
+    new_product.description = "Описание тестового товара"
+    new_product._Product__price = 150
+    new_product.quantity = 0
+
+    category_2.add_product(new_product)
+    message = capsys.readouterr()
+    assert (
+        message.out.strip().split("\n")[-2]
+        == "Нельзя добавить товар с нулевым количеством"
+    )
+    assert (
+        message.out.strip().split("\n")[-1]
+        == "Обработка добавления товара в категорию завершена"
+    )
+
+    new_product = Product.__new__(Product)
+    new_product.name = "Тестовый товар"
+    new_product.description = "Описание тестового товара"
+    new_product._Product__price = 150
+    new_product.quantity = 3
+
+    category_2.add_product(new_product)
+    message = capsys.readouterr()
+    assert message.out.strip().split("\n")[-2] == "Товар успешно добавлен"
+    assert (
+        message.out.strip().split("\n")[-1]
+        == "Обработка добавления товара в категорию завершена"
+    )
